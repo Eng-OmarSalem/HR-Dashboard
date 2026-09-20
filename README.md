@@ -1,23 +1,19 @@
-[README.md](https://github.com/user-attachments/files/32443891/README.md)
+[README.md](https://github.com/user-attachments/files/32444232/README.md)
 <div align="center">
 
-<img src="https://img.shields.io/badge/H-2DD4BF?style=for-the-badge" height="40"/><img src="https://img.shields.io/badge/R-EC4899?style=for-the-badge" height="40"/>
+# 👔 HR Analytics Dashboard
 
-# HR Analytics Dashboard
+### Turning an 8,950-Row Employee Roster into a Two-Page Decision-Making Tool
 
-### *Turning an 8,950-row employee roster into a two-page decision-making tool*
-
-![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat-square&logo=tableau&logoColor=white)
-![Calculated Fields](https://img.shields.io/badge/Calculated%20Fields-124-2DD4BF?style=flat-square)
-![Attrition](https://img.shields.io/badge/Attrition-10.8%25-EC4899?style=flat-square)
-![Employees](https://img.shields.io/badge/Employees-8%2C950-2DD4BF?style=flat-square)
-![States](https://img.shields.io/badge/States-8-EC4899?style=flat-square)
+![Tableau](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white)
+![Calculated Fields](https://img.shields.io/badge/Calculated%20Fields-124-4B5563?style=for-the-badge)
+![Data Analysis](https://img.shields.io/badge/Data-Analysis-orange?style=for-the-badge)
 
 </div>
 
 <br/>
 
-> *"How healthy is the workforce right now — and why?"* That's the single question this workbook is built to answer, from a full-company snapshot down to one employee's ID card.
+> *"How healthy is the workforce right now — and why?"* That's the single question this workbook is built to answer, from a full-company snapshot down to one employee's record.
 
 ---
 
@@ -30,7 +26,10 @@
 - [Dashboards, Page by Page](#-dashboards-page-by-page)
 - [The Calculation Engine](#-the-calculation-engine)
 - [Key Insights](#-key-insights)
+- [Business Questions Answered](#-business-questions-answered)
+- [Skills Demonstrated](#-skills-demonstrated)
 - [Tools & Techniques](#️-tools--techniques)
+- [Possible Extensions](#-possible-extensions)
 - [Project Structure](#-project-structure)
 - [How to Use](#-how-to-use)
 - [Contact Me](#-contact-me)
@@ -65,14 +64,13 @@ Nothing here is a static export. Every number on the Overview page — headcount
 
 <br/>
 
-<table align="center">
-<tr>
-<td align="center"><b>7,984</b><br/>Active</td>
-<td align="center"><b>966</b><br/>Terminated</td>
-<td align="center"><b>54% / 46%</b><br/>Male / Female</td>
-<td align="center"><b>70% / 30%</b><br/>HQ / Branch</td>
-</tr>
-</table>
+<div align="center">
+
+| Active | Terminated | Male / Female | HQ / Branch |
+|:---:|:---:|:---:|:---:|
+| **7,984** | **966** | **54% / 46%** | **70% / 30%** |
+
+</div>
 
 <details>
 <summary><b>📋 Full department breakdown (Active / Terminated / Total) — click to expand</b></summary>
@@ -192,6 +190,27 @@ Full Name = [First Name] + ' ' + [Last Name]
 
 ---
 
+## ❓ Business Questions Answered
+
+- What's our current headcount, and how has hiring vs. attrition trended year over year?
+- Which departments and states carry the most risk of turnover?
+- Is compensation aligned with role and performance, or with age and tenure alone?
+- Where is the company overexposed to a single location (HQ vs. Branch)?
+- Given any combination of filters — department, state, education, salary band — who exactly are the employees behind that number?
+
+---
+
+## 🧠 Skills Demonstrated
+
+- **Data modeling** — shaping a flat CSV into a fully calculated, filter-ready data source
+- **Tableau calculated fields** — conditional logic (`IF`/`CASE`), date math (`DATEDIFF`), string concatenation
+- **Table calculations** — `RANK()`, `WINDOW_MAX()`, `TOTAL()` for dynamic, self-updating highlights
+- **Dashboard UX design** — a two-tier information hierarchy (Overview → Details) with consistent navigation
+- **Filter actions** — a seven-category, cross-filtering panel built for real analyst workflows
+- **Geographic visualization** — state-level mapping of headcount and HQ/Branch concentration
+
+---
+
 ## 🛠️ Tools & Techniques
 
 - **Tableau Desktop** — dashboard design, filter actions, packaged workbook (`.twbx`) publishing
@@ -199,6 +218,15 @@ Full Name = [First Name] + ' ' + [Last Name]
 - **Table Calculations** — `RANK()`, `WINDOW_MAX()`, `TOTAL()`
 - **Filter Actions** — a seven-category panel (demographic, geographic, role, salary, status, tenure, employee ID)
 - **Geographic Mapping** — a built-in state-level map for headcount by location
+
+---
+
+## 🔮 Possible Extensions
+
+- Add a rolling 12-month **attrition-rate trend line** (vs. the current year-by-year bar) to catch early warning signs faster
+- Layer in **manager/reporting-line data** to analyze span of control and team-level attrition
+- Add a **compensation-benchmarking view** against external market data by job title
+- Publish to **Tableau Server/Cloud** with row-level security so each department head only sees their own team
 
 ---
 
@@ -233,13 +261,5 @@ HR-Analytics-Dashboard/
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:salemomar676@gmail.com)
 [![Portfolio](https://img.shields.io/badge/Portfolio-4B5563?style=for-the-badge)](https://gamma.app/docs/Copy-of-Brand-Partnership-Proposal-lrp9yrhau9gdpj1)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/eng-omarsalem)
-
-</div>
-
-<br/>
-
-<div align="center">
-
-<sub>Built with 🩵 teal, 💗 magenta, and a lot of Tableau calculated fields</sub>
 
 </div>
