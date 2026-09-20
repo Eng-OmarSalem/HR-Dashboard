@@ -1,15 +1,23 @@
-[README.md](https://github.com/user-attachments/files/31758005/README.md)
+[README.md](https://github.com/user-attachments/files/32443891/README.md)
 <div align="center">
 
-# 👔 HR Analytics Dashboard
+<img src="https://img.shields.io/badge/H-2DD4BF?style=for-the-badge" height="40"/><img src="https://img.shields.io/badge/R-EC4899?style=for-the-badge" height="40"/>
 
-### A Two-Page Tableau Workbook for Workforce Demographics, Attrition & Compensation
+# HR Analytics Dashboard
 
-![Tableau](https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white)
-![HR Analytics](https://img.shields.io/badge/HR-Analytics-4B5563?style=for-the-badge)
-![Data Analysis](https://img.shields.io/badge/Data-Analysis-orange?style=for-the-badge)
+### *Turning an 8,950-row employee roster into a two-page decision-making tool*
+
+![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat-square&logo=tableau&logoColor=white)
+![Calculated Fields](https://img.shields.io/badge/Calculated%20Fields-124-2DD4BF?style=flat-square)
+![Attrition](https://img.shields.io/badge/Attrition-10.8%25-EC4899?style=flat-square)
+![Employees](https://img.shields.io/badge/Employees-8%2C950-2DD4BF?style=flat-square)
+![States](https://img.shields.io/badge/States-8-EC4899?style=flat-square)
 
 </div>
+
+<br/>
+
+> *"How healthy is the workforce right now — and why?"* That's the single question this workbook is built to answer, from a full-company snapshot down to one employee's ID card.
 
 ---
 
@@ -18,8 +26,9 @@
 - [Overview](#-overview)
 - [Dashboard Preview](#️-dashboard-preview)
 - [Dataset](#️-dataset)
-- [Dashboards](#-dashboards)
-- [Calculated Fields & Analytical Logic](#-calculated-fields--analytical-logic)
+- [How It's Wired Together](#-how-its-wired-together)
+- [Dashboards, Page by Page](#-dashboards-page-by-page)
+- [The Calculation Engine](#-the-calculation-engine)
 - [Key Insights](#-key-insights)
 - [Tools & Techniques](#️-tools--techniques)
 - [Project Structure](#-project-structure)
@@ -30,9 +39,9 @@
 
 ## 📌 Overview
 
-**HR Analytics Dashboard** is a Tableau workbook (`.twbx`) that turns a company-wide employee roster into a two-page HR intelligence tool: a **Summary** page for headcount, demographics, and attrition trends, and a **Details** page for exploring every individual employee record behind a full filter panel.
+**HR Analytics Dashboard** is a Tableau workbook (`.twbx`) built on a company-wide employee roster. It's deliberately split into two pages that mirror how an actual HR team works: **Overview** for the executive-level pulse check, and **Details** for the analyst who needs to drill into one employee, one team, or one filter combination at a time.
 
-The workbook is powered by **124 calculated fields** — employment status, tenure, age bucketing, HQ vs. Branch classification, top-N ranking, and automatic peak highlighting — turning a flat employee list into a genuinely interactive analytics tool.
+Nothing here is a static export. Every number on the Overview page — headcount, attrition, income, education — is generated live from **124 calculated fields**, so the whole story updates the instant a Gender, Status, Location, or Hiredate filter is touched.
 
 ---
 
@@ -40,21 +49,34 @@ The workbook is powered by **124 calculated fields** — employment status, tenu
 
 <div align="center">
 
-### 📈 Overview Page
-Headcount, hiring vs. termination trend, demographics, and income breakdown.
+### 📈 Overview
+*The pulse check: who we have, who we're losing, and what they earn.*
 
 <img src="assets/dashboard-overview.png" alt="HR Dashboard - Overview Page" width="850"/>
 
 <br/><br/>
 
-### 🔍 Details Page
-Full, filterable employee list with expandable Demographics, Role, Geographics, Salary, Status, and Length of Employment columns.
+### 🔍 Details
+*The drill-down: every employee, one searchable, sortable record at a time.*
 
 <img src="assets/dashboard-details.png" alt="HR Dashboard - Details Page" width="850"/>
 
 </div>
 
-**Headcount by department (Active / Terminated / Total):**
+<br/>
+
+<table align="center">
+<tr>
+<td align="center"><b>7,984</b><br/>Active</td>
+<td align="center"><b>966</b><br/>Terminated</td>
+<td align="center"><b>54% / 46%</b><br/>Male / Female</td>
+<td align="center"><b>70% / 30%</b><br/>HQ / Branch</td>
+</tr>
+</table>
+
+<details>
+<summary><b>📋 Full department breakdown (Active / Terminated / Total) — click to expand</b></summary>
+<br/>
 
 | Department | Active | Terminated | Total |
 |---|---|---|---|
@@ -66,61 +88,80 @@ Full, filterable employee list with expandable Demographics, Role, Geographics, 
 | Finance | 389 | 63 | 452 |
 | HR | 152 | 20 | 172 |
 
-**Other verified highlights from the Overview page:**
-- Gender split: **54% Male / 46% Female**, each with a matching ~89% Hired / ~11% Terminated ratio
-- Location split: **70% HQ (New York) / 30% Branch offices**
-- The Age & Salary scatter plot shows Finance Managers and IT Managers at the top of the pay scale (~$110K–$135K), while Sales Specialists and HR Assistants cluster at the lower end
+The Age & Salary scatter tells its own story: **Finance Managers and IT Managers** sit at the top of the pay scale (~$110K–$135K), while **Sales Specialists and HR Assistants** cluster at the lower end — a compensation ladder visible in one glance.
+
+</details>
 
 ---
 
 ## 🗃️ Dataset
 
-`dataset.csv` — **8,950 employee records**, one row per employee, with the following fields: Employee ID, First/Last Name, Gender, State, City, Education Level, Birthdate, Hiredate, Termdate, Department, Job Title, Salary, and Performance Rating.
+`dataset.csv` — **8,950 employee records**, one row per employee: Employee ID, First/Last Name, Gender, State, City, Education Level, Birthdate, Hiredate, Termdate, Department, Job Title, Salary, and Performance Rating.
 
-**Verified scope of the data:**
-- 👥 **8,950** employees — **7,984 Active** and **966 Terminated** (a **10.8%** attrition rate)
-- 📅 Hire dates span **2015-01-01 to 2024-12-29**
-- 💵 Salary range: **$51,835 – $149,377**, averaging **$70,964**
-- 🏢 **7** departments (HR, Finance, Marketing, Operations, IT, Sales, Customer Service) across **28** distinct job titles
-- 🌎 **8** U.S. states (New York, Pennsylvania, Ohio, Illinois, Michigan, Virginia, North Carolina, West Virginia)
-- 🎓 **4** education levels (High School, Bachelor, Master, PhD) and **4** performance ratings (Excellent, Good, Satisfactory, Needs Improvement)
-
----
-
-## 📊 Dashboards
-
-### 📈 Overview (internal name: `HR | Summary`)
-| KPI Cards (BANs) | Supporting Visuals |
+| | |
 |---|---|
-| **BAN Hired**, **BAN Active**, **BAN Terminated** | `Departments`, `Job Titles`, `Gender`, `Education Levels`, `Gender vs Education Level`, `Age`, `Age Groups`, `Age vs Education`, `Age vs Salary`, `Education vs Performance`, `Hired By Year`, `Terminated By Year`, `Location` / `Map States`, `Cities`, `States` |
-
-A single page that answers "how healthy is the workforce right now?" — headcount, hiring and attrition trends by year, salary distribution by age and education, and a geographic breakdown of where employees are based.
-
-### 🔍 Details (internal name: `HR | Details`)
-A record-level explorer built around one central `Detailed` grid, paired with a comprehensive filter panel:
-- **Demographic Filters** — gender, education level, age
-- **Geographic Filters** — state, city
-- **Role Filters** — department, job title
-- **Salary Filters** — compensation range
-- **Status Filters** — active vs. terminated
-- **Length Filters** — tenure range
-- **Employee ID Filter** — direct lookup by ID
-
-This page lets an HR analyst drill from the high-level Summary straight down to individual employees matching any combination of criteria.
+| 📅 **Hire dates** | 2015-01-01 → 2024-12-29 |
+| 💵 **Salary range** | $51,835 – $149,377 (avg. **$70,964**) |
+| 🏢 **Departments** | 7, across **28** distinct job titles |
+| 🌎 **States** | 8 (New York, Pennsylvania, Ohio, Illinois, Michigan, Virginia, North Carolina, West Virginia) |
+| 🎓 **Education** | High School · Bachelor · Master · PhD |
+| ⭐ **Performance** | Excellent · Good · Satisfactory · Needs Improvement |
 
 ---
 
-## 🧮 Calculated Fields & Analytical Logic
+## 🔗 How It's Wired Together
 
-A sample of the logic behind the 124 calculated fields:
-
+```mermaid
+flowchart LR
+    A["📄 dataset.csv\n8,950 employees"] --> B["🧮 124 Calculated Fields\nStatus · Tenure · Age · HQ/Branch"]
+    B --> C["📈 Overview\nHeadcount · Demographics · Income"]
+    B --> D["🔍 Details\nFilterable Employee List"]
+    C -.filter click.-> D
+    D -.navigate back.-> C
 ```
+
+Both pages read from the same 124 calculated fields, so a filter set on one page and a chart built on the other are always telling the same story from two different altitudes.
+
+---
+
+## 📊 Dashboards, Page by Page
+
+### 📈 Overview *(internal name: `HR | Summary`)*
+
+| Zone | What lives there |
+|---|---|
+| **Headcount** | `BAN Hired`, `BAN Active`, `BAN Terminated` — with a Hired-vs-Terminated trend sparkline |
+| **Departments** | Ranked bar list, Active headcount with Terminated overlay |
+| **Location** | `Map States` + HQ vs. Branch split bar |
+| **Demographics** | `Gender`, `Education & Age`, `Education & Performance` matrix |
+| **Income** | `Education & Gender` pay comparison, `Age & Salary` scatter by job title |
+
+### 🔍 Details *(internal name: `HR | Details`)*
+
+One central `Detailed` employee grid, sliced by a seven-category filter panel:
+
+`Demographic` · `Geographic` · `Role` · `Salary` · `Status` · `Length of Employment` · `Employee ID`
+
+Every column — Demographics, Role, Geographics, Salary, Status, Length of Employment — expands into its own set of filter options, so an analyst can go from "show me everyone" to "Bachelor's-degree Operations Analysts in Michigan hired after 2019" in four clicks.
+
+---
+
+## 🧮 The Calculation Engine
+
+<details open>
+<summary><b>Core logic behind the 124 calculated fields</b></summary>
+
+```javascript
+// Status — the backbone of every Active/Terminated split on the workbook
 Employment Status = IF ISNULL([Termdate]) THEN 'Hired' ELSE 'Terminated' END
 
+// Geography — isolates headquarters from every branch office
 HQ / Branch = CASE [State] WHEN 'New York' THEN 'HQ' ELSE 'Branch' END
 
+// Demographics
 Age = DATEDIFF('year', [Birthdate], TODAY())
 
+// Fairness fix: terminated employees are measured to their LAST day, not today
 Tenure (years) = IF ISNULL([Termdate])
                  THEN DATEDIFF('year', [Hiredate], TODAY())
                  ELSE DATEDIFF('year', [Hiredate], [Termdate])
@@ -129,31 +170,35 @@ Tenure (years) = IF ISNULL([Termdate])
 Full Name = [First Name] + ' ' + [Last Name]
 ```
 
-- **Employment Status** drives the Active/Terminated split used throughout the Summary page and as a filter on the Details page.
-- **HQ / Branch** flags New York (headquarters) separately from every other state (branch offices) for location-based comparisons.
-- **Tenure** is calculated correctly for *both* active employees (up to today) and terminated employees (up to their term date) — so average tenure isn't skewed by people still employed.
-- **Top-N ranking** (`RANK(...) <= 1` / `<= 2`) highlights the top department(s) or state(s) on demand.
-- **`WINDOW_MAX(...) = [value]`** automatically flags the single highest bar on charts like Hired/Terminated By Year, without manual annotation.
-- **`[value] / TOTAL([value])`** powers percent-of-total breakdowns (e.g., gender or education share of headcount).
+| Technique | Where it's used |
+|---|---|
+| `RANK(...) <= N` | Highlights the top department(s) or state(s) on demand |
+| `WINDOW_MAX(...) = [value]` | Auto-flags the single highest bar on `Hired/Terminated By Year` — no manual annotation |
+| `[value] / TOTAL([value])` | Powers every percent-of-total ring (gender split, education share) |
+
+</details>
 
 ---
 
 ## 💡 Key Insights
 
-- Attrition sits at **10.8%** (966 of 8,950 employees terminated) — the `Terminated By Year` chart shows exactly which years drove that number.
-- Tenure is tracked fairly for everyone, since terminated employees are measured up to their actual last day rather than today's date — avoiding an inflated average tenure.
-- The HQ/Branch split isolates New York from the other 7 states, useful for comparing headquarters staffing and pay against branch offices.
-- With 28 job titles across 7 departments and a $51,835–$149,377 salary range, the `Age vs Salary` and `Education vs Performance` charts surface where compensation and performance actually align — or don't.
+> 🔹 **10.8% attrition** (966 of 8,950) — and because Tenure is measured to each employee's *actual* last day rather than today, that number isn't quietly inflated by people still on the payroll.
+>
+> 🔹 **70/30 HQ-to-Branch split** — New York alone carries the majority of headcount, making it the natural lens for any location-based comparison.
+>
+> 🔹 **Pay tracks role, not just tenure** — the `Age vs Salary` scatter shows Finance and IT Managers clearly separated from Sales Specialists and HR Assistants, regardless of age.
+>
+> 🔹 **Education ≠ automatic performance** — the `Education & Performance` matrix lets you check that assumption directly instead of taking it on faith.
 
 ---
 
 ## 🛠️ Tools & Techniques
 
-- **Tableau Desktop** — dashboard design, filter actions, and packaged workbook (`.twbx`) publishing
+- **Tableau Desktop** — dashboard design, filter actions, packaged workbook (`.twbx`) publishing
 - **Calculated Fields (124 total)** — status, tenure, age bucketing, HQ/Branch classification, full-name concatenation
-- **Table Calculations** — `RANK()` for top-N highlighting, `WINDOW_MAX()` for automatic peak detection, `TOTAL()` for percent-of-whole
-- **Filter Actions** — a seven-category filter panel (demographic, geographic, role, salary, status, tenure, employee ID) on the Details page
-- **Geographic Mapping** — a built-in state-level map (`Map States`) for headcount by location
+- **Table Calculations** — `RANK()`, `WINDOW_MAX()`, `TOTAL()`
+- **Filter Actions** — a seven-category panel (demographic, geographic, role, salary, status, tenure, employee ID)
+- **Geographic Mapping** — a built-in state-level map for headcount by location
 
 ---
 
@@ -173,11 +218,11 @@ HR-Analytics-Dashboard/
 
 ## 🚀 How to Use
 
-1. Download `HR_Dashboard.twbx` from this repository — it's a packaged workbook, so the data is already embedded inside it.
-2. Open it in **Tableau Desktop** or **Tableau Reader** (free viewer, no license required).
-3. Start on the **HR | Summary** page for the big picture, then use the navigation icon to jump to **HR | Details**.
-4. On the Details page, combine any of the seven filter panels to drill down to a specific employee segment — or look up a single employee directly by ID.
-5. `dataset.csv` is included separately for reference or if you want to rebuild the data connection from scratch.
+1. Download `HR_Dashboard.twbx` — it's a packaged workbook, so the data is already embedded inside.
+2. Open it in **Tableau Desktop** or the free **Tableau Reader**.
+3. Start on **Overview** for the big picture, then use the sidebar icon to jump to **Details**.
+4. On Details, combine any of the seven filter panels to drill down to a specific employee segment — or look one up directly by ID.
+5. `dataset.csv` is included separately in case you want to rebuild the data connection from scratch.
 
 ---
 
@@ -191,10 +236,10 @@ HR-Analytics-Dashboard/
 
 </div>
 
----
+<br/>
 
 <div align="center">
 
-Made with 👔 and Tableau
+<sub>Built with 🩵 teal, 💗 magenta, and a lot of Tableau calculated fields</sub>
 
 </div>
